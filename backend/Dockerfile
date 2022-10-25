@@ -1,9 +1,4 @@
-FROM        node:alpine
-
-ARG         PACKAGES=nano
-
-ENV         TERM xterm
-RUN         apk update && apk add $PACKAGES
+FROM        node:14
 
 WORKDIR     /var/www
 COPY        package.json package-lock.json ./

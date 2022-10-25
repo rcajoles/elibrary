@@ -1,2 +1,3 @@
-# elibrary
-this is a small ebook library app
+# E-Library app
+
+This is a small ebook library app
