@@ -7,7 +7,7 @@ const dbConfig = require('./app/config/db.config');
 const app = express();
 
 const corsOptions = {
-  origin: 'http://localhost:8001'
+  origin: `${process.env.APP_URI}:${process.env.CORS_OPTION_PORT}`
 };
 
 app.use(cors(corsOptions));
@@ -41,7 +41,7 @@ async function main() {
 
 // simple route
 app.get('/', (req, res) => {
-  res.json({ message: 'Welcome to e-library application.' });
+  res.json({ message: 'Welcome to e-library API endpoint.' });
 });
 
 // router
@@ -50,6 +50,7 @@ require('./app/router/user.router')(app);
 
 // set port, listen for requests
 const PORT = process.env.NODE_DOCKER_PORT || 8000;
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });
