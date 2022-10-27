@@ -1,34 +1,42 @@
-version: '3.7'
+version: '3.8'
 
 services:
 
   node:
-    container_name: elibrary
-    image: elibrary
-    build:
-      context: .
-      args:
-        PACKAGES: "nano wget curl"
+    container_name: nodeapp
+    image: nodeapp
+    build: .
     ports:
-      - "8000:8000"
+      - "8080:8080"
     networks:
-      - elibrary-network
+      - nodeapp-network
     volumes:
       - ./logs:/var/www/logs
+    restart: unless-stopped
+    env_file: ./.env
     environment:
-      - NODE_ENV=production
+      - NODE_ENV=$NODE_ENV
       - APP_VERSION=1.0
+      - DB_HOST=$DB_HOST
+      - DB_USER=$DB_USER
+      - DB_PASSWORD=$DB_PASSWORD
+      - DB_NAME=$DB_NAME
+      - DB_PORT=$DB_PORT
     depends_on:
       - mongodb
 
   mongodb:
     container_name: mongodb
     image: mongo
+    restart: unless-stopped
+    env_file: ./.env
+    volumes:
+      - ./app/data:/data/db
     ports:
       - "27017:27017"
     networks:
-      - elibrary-network
+      - nodeapp-network
 
 networks:
-  elibrary-network:
+  nodeapp-network:
     driver: bridge
