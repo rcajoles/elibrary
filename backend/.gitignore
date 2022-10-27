@@ -28,3 +28,4 @@ yarn-error.log*
 
 /data
 /app/data
+logs/access.log

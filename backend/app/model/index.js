@@ -5,9 +5,11 @@ const db = {};
 
 db.mongoose = mongoose;
 
+const { Role, presetRoles } = require('./role.model');
+db.role = Role;
 db.user = require('./user.model');
-db.role = require('./role.model');
+db.book = require('./book.model');
 
-db.ROLES = ['user', 'admin', 'moderator'];
+db.presetRoles = presetRoles;
 
 module.exports = db;

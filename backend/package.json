@@ -16,11 +16,19 @@
   "author": "rcajoles",
   "license": "ISC",
   "dependencies": {
+    "@types/node": "^18.11.5",
     "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^6.6.7"
+    "lodash": "^4.17.21",
+    "mongodb": "^4.11.0",
+    "mongoose": "^6.6.7",
+    "morgan": "^1.10.0",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "^0.3.10",
+    "typeorm-express-query-builder": "^1.6.0"
   }
 }

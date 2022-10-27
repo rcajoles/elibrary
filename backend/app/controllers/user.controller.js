@@ -1,15 +1,24 @@
-exports.allAccess = (req, res) => {
-    res.status(200).send('Public Content.');
-  };
+const read = (req, res) => {
+  res.status(200).send("Admin Content.");
+};
 
-  exports.userBoard = (req, res) => {
-    res.status(200).send('User Content.');
-  };
+const create = (req, res) => {
+  res.status(200).send("Admin Content.");
+};
 
-  exports.adminBoard = (req, res) => {
-    res.status(200).send('Admin Content.');
-  };
+const update = (req, res) => {
+  res.status(200).send("Admin Content.");
+};
 
-  exports.moderatorBoard = (req, res) => {
-    res.status(200).send('Moderator Content.');
-  };
+const deleteRecord = (req, res) => {
+  res.status(200).send("Admin Content.");
+};
+
+const controller = {
+  read,
+  create,
+  update,
+  deleteRecord
+};
+
+module.exports = controller;

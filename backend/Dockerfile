@@ -1,10 +1,10 @@
 FROM        node:14
 
-WORKDIR     /var/www
+WORKDIR     /backend
 COPY        package.json package-lock.json ./
 RUN         npm install
 
 COPY        . ./
 EXPOSE      $PORT
 
-ENTRYPOINT  ["npm", "start"]
+CMD  ["npm", "start"]

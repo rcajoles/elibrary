@@ -11,16 +11,20 @@ const verifyToken = (req, res, next) => {
     return res.status(403).send({ message: 'No token provided!' });
   }
 
-  jwt.verify(token, config.secret, (err, decoded) => {
+  jwt.verify(token, config.secret, async (err, decoded) => {
     if (err) {
       return res.status(401).send({ message: 'Unauthorized!' });
     }
     req.userId = decoded.id;
+
+    const userRole = await User.findById(req.userId).all();
+    req.userRole = Array.from(userRole.roles);
+
     next();
   });
 };
 
-const isAdmin = (req, res, next) => {
+const isViewer = (req, res, next) => {
   User.findById(req.userId).exec((err, user) => {
     if (err) {
       res.status(500).send({ message: err });
@@ -38,20 +42,20 @@ const isAdmin = (req, res, next) => {
         }
 
         for (let i = 0; i < roles.length; i++) {
-          if (roles[i].name === 'admin') {
+          if (roles[i].name === 'viewer') {
             next();
             return;
           }
         }
 
-        res.status(403).send({ message: 'Require Admin Role!' });
+        res.status(403).send({ message: 'Require Viewer Role!' });
         return;
       }
     );
   });
 };
 
-const isModerator = (req, res, next) => {
+const isCreator = (req, res, next) => {
   User.findById(req.userId).exec((err, user) => {
     if (err) {
       res.status(500).send({ message: err });
@@ -69,13 +73,13 @@ const isModerator = (req, res, next) => {
         }
 
         for (let i = 0; i < roles.length; i++) {
-          if (roles[i].name === 'moderator') {
+          if (roles[i].name === 'creator') {
             next();
             return;
           }
         }
 
-        res.status(403).send({ message: 'Require Moderator Role!' });
+        res.status(403).send({ message: 'Require Creator Role!' });
         return;
       }
     );
@@ -84,8 +88,8 @@ const isModerator = (req, res, next) => {
 
 const authJwt = {
   verifyToken,
-  isAdmin,
-  isModerator
+  isViewer,
+  isCreator
 };
 
 module.exports = authJwt;
