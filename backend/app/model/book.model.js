@@ -4,9 +4,7 @@ mongoose.Promise = global.Promise;
 const schema = new mongoose.Schema({
   author: String,
   title: String,
-  category: String,
   year: String,
-  isbn: String,
   createdBy: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',

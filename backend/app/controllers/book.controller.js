@@ -14,17 +14,13 @@ const create = (req, res) => {
   const {
     author,
     title,
-    category,
     year,
-    isbn
   } = req.body;
 
    const newBook = new Book({
     author,
     title,
-    category,
     year,
-    isbn
   });
 
   newBook.save((err, record) => {
@@ -56,13 +52,13 @@ const create = (req, res) => {
  * Verify if active user's role is Creator
  * this help's to filter getting list of Books
  */
-const isUserCreator = async (params) => {
+const isUserViewer = async (params) => {
   try {
     const roles = await Role.find({ _id: { $in: params } });
     let state = false;
 
     _.forEach(Array.from(roles), (item) => {
-      if (item.name === 'creator') {
+      if (item.name === 'viewer') {
         state = true;
       }
     });
@@ -101,8 +97,8 @@ const read = async (req, res) => {
     }
   }
 
-  const isCreator = await isUserCreator(req.userRole);
-  if (isCreator) {
+  const isViewer = await isUserViewer(req.userRole);
+  if (isViewer) {
     filter.createdBy = req.userId;
   }
 
@@ -124,17 +120,13 @@ const update = (req, res) => {
     _id,
     author,
     title,
-    category,
     year,
-    isbn
   } = req.body;
 
   const bookUpdate = {
     author,
     title,
-    category,
     year,
-    isbn
   };
 
   const query = { _id };
@@ -162,8 +154,6 @@ const update = (req, res) => {
       return;
     });
   });
-
-
 };
 
 /**

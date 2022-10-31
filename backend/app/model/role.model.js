@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
-const presetRoles = ['viewer', 'creator'];
+const presetRoles = ['view_all', 'viewer', 'creator'];
 exports.presetRoles = presetRoles;
 
 const schema = new mongoose.Schema({
