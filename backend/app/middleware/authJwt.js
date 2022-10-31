@@ -42,7 +42,7 @@ const isViewer = (req, res, next) => {
         }
 
         for (let i = 0; i < roles.length; i++) {
-          if (roles[i].name === 'viewer') {
+          if (roles[i].name === 'viewer' || roles[i].name === 'view_all') {
             next();
             return;
           }

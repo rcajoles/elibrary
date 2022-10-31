@@ -13,7 +13,7 @@ const express = require('express'),
         origin: `${process.env.APP_URI}:${process.env.CORS_OPTION_PORT}`
       };
 
-app.use(cors(corsOptions));
+app.use(cors());
 
 // create a write stream (in append mode)
 const accessLogStream = fs.createWriteStream(path.join(__dirname, '/logs/access.log'), { flags: 'a' });
@@ -39,7 +39,7 @@ require('./app/router/auth.router')(app);
 require('./app/router/user.router')(app);
 
 // set port, listen for requests
-const PORT = process.env.NODE_DOCKER_PORT || 8000;
+const PORT = process.env.NODE_DOCKER_PORT || 8080;
 
 app.listen(PORT, () => {
   console.log('[%s] Listening on http://localhost:%d', app.settings.env, PORT);

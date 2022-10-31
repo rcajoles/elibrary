@@ -5,6 +5,17 @@ const RoleSeeder = function () {
     const seeder = function () {
         Role.estimatedDocumentCount((err, count) => {
             if (!err && count === 0) {
+
+                new Role({
+                    name: 'view_all'
+                }).save(err => {
+                    if (err) {
+                        console.log('error', err);
+                    }
+
+                    console.log(`added 'view_all' to roles collection`);
+                });
+
                 new Role({
                     name: 'viewer'
                 }).save(err => {
