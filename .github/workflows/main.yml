@@ -1,13 +1,16 @@
 name: Send LGTM reaction
 on:
+  push:
+    branches: [ main, develop ]
   pull_request:
     types: [opened, edited, reopened]
+  workflow_dispatch:
 
 jobs:
   commitLint:
     runs-on: ubuntu-latest
     env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GITHUB_TOKEN: ${{ secrets.ENV_PAT }}
     steps:
       - name: Check out code
         uses: actions/checkout@v2
@@ -24,7 +27,7 @@ jobs:
     env:
       GITHUB_TOKEN: ${{ secrets.ENV_PAT }}
       GIPHY_API_KEY: ${{ secrets.GIPHY_API_KEY }}
-    with:
-      trigger: '[".*looks good to me.*"]'
-      override: true
-      source: 'giphy'
+      with:
+        trigger: '[".*looks good to me.*"]'
+        override: true
+        source: 'giphy'
