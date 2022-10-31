@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import { Container, Row, Col } from 'react-bootstrap';
+import Routes from './routes';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+	constructor(props) {
+		super(props);
+		window.addEventListener('storage', ({ oldValue, newValue }) => {
+			// Note: For this app we don't have any server to verify role/roles, in your case you can verify role/roles from your server and update accordingly.
+			alert(
+				`You can not change role/roles from ${oldValue} to ${newValue}, if you want to change role/roles please log out and then log in with a different roles.`
+			);
+			localStorage.setItem('roles', oldValue);
+		});
+	}
+
+	render() {
+		return (
+			<Container fluid>
+				<Row>
+					<Col className="p-0">
+						<Routes />
+					</Col>
+				</Row>
+			</Container>
+		);
+	}
 }
 
 export default App;
