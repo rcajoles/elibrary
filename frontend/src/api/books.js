@@ -2,7 +2,6 @@ import axios from 'axios';
 
 const app_uri = `${process.env.REACT_APP_BASE_API}`;
 const token = !!localStorage.getItem('accessToken') ? localStorage.getItem('accessToken') : null;
-console.log(`token: ${token}`);
 
 export const read = async (params) => {
   const endpoint = `/api/books`;
