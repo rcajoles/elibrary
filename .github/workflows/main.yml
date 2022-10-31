@@ -1,19 +1,36 @@
-name: pull request lint
-on:
-  push:
-    branches: [ main, develop ]
-  pull_request:
-    types: [opened, edited, reopened]
+# name: pull request lint
+# on:
+#   push:
+#     branches: [ main, develop ]
+#   pull_request:
+#     types: [opened, edited, reopened]
+
+# jobs:
+#   commitLint:
+#     runs-on: ubuntu-latest
+#     env:
+#       ENV_PAT: ${{ secrets.ENV_PAT }}
+#     steps:
+#       - name: Check out code
+#         uses: actions/checkout@v2
+#         with:
+#           fetch-depth: 0
+#       - name: linting
+#         uses: wagoid/commitlint-github-action:5.2.2
+name: hello world
+on: [push]
 
 jobs:
-  commitLint:
+  hello_world_job:
     runs-on: ubuntu-latest
-    env:
-      ENV_PAT: ${{ secrets.ENV_PAT }}
+    name: A job to say hello
     steps:
-      - name: Check out code
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      - name: linting
-        uses: wagoid/commitlint-github-action:5.2.2
+    - name: Hello world action step
+      id: hello
+      using: "docker"
+      main: "Dockerfile"
+      with:
+        who-to-greet: 'Mona the Octocat'
+    # Use the output from the `hello` step
+    - name: Get the output time
+      run: echo "The time was ${{ steps.hello.outputs.time }}"
