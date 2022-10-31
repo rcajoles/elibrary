@@ -11,13 +11,6 @@ function Books() {
 			.then((res) => {
 				console.log(res);
 				if (res[0].status === 200) {
-					// const {
-					// 	id,
-					// 	username,
-					// 	email,
-					// 	roles,
-					// 	accessToken
-					// } = res[0].data;
 
 				}
 				return res;
