@@ -4,13 +4,12 @@ on:
     branches: [ main, develop ]
   pull_request:
     types: [opened, edited, reopened]
-  workflow_dispatch:
 
 jobs:
   commitLint:
     runs-on: ubuntu-latest
     env:
-      GITHUB_TOKEN: ${{ secrets.ENV_PAT }}
+      ENV_PAT: ${{ secrets.ENV_PAT }}
     steps:
       - name: Check out code
         uses: actions/checkout@v2
@@ -19,13 +18,21 @@ jobs:
       - name: linting
         uses: wagoid/commitlint-github-action@v2
 
+name: Send LGTM reaction
+on:
+  issue_comment:
+    types: [created]
+  pull_request_review:
+    types: [submitted]
+
+jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: micnncim/action-lgtm-reaction@master # Set some version.
     env:
-      GITHUB_TOKEN: ${{ secrets.ENV_PAT }}
+      ENV_PAT: ${{ secrets.ENV_PAT }}
       GIPHY_API_KEY: ${{ secrets.GIPHY_API_KEY }}
       with:
         trigger: '[".*looks good to me.*"]'
