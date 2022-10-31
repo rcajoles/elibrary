@@ -17,12 +17,12 @@ This is a small ebook library app
 * Clone app from repo  &nbsp; `https://github.com/rcajoles/elibrary`
 * cd inside the root folder, then `cd /backend`
 * `cp .env.sample .env.local`
-* `docker-compose build`.
+* `docker-compose build`
 * `docker-compose up -d`
 
 ### # Frontend
 * Open your favorite terminal.
-* `cd frontend`,
+* `cd frontend`
 * `cp .env.sample .env.local`
-* `yarn` or `yarn install`.
+* `yarn` or `yarn install`
 * `yarn start`

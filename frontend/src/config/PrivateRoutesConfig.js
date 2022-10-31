@@ -1,25 +1,20 @@
 import { Access } from '../config';
 
 // Components
-import {
-	Dashboard,
-	Books,
-	Create,
-	Edit
-} from 'components';
+import { Dashboard, BookList, Create, Edit } from 'components';
 
 export default [
 	{
 		component: Dashboard,
 		path: '/',
 		title: 'Dashboard',
-		exact: true,
+		exact: true
 	},
 	{
-		component: Books,
+		component: BookList,
 		path: '/books',
 		title: 'Books',
-		permission: [Access.ROLE_VIEW_ALL, Access.ROLE_VIEWER],
+		permission: [Access.ROLE_VIEW_ALL, Access.ROLE_VIEWER]
 	},
 	{
 		component: Create,
@@ -32,6 +27,5 @@ export default [
 		path: '/edit',
 		title: 'Edit Book',
 		permission: [Access.ROLE_CREATOR]
-	},
-
+	}
 ];

@@ -11,8 +11,7 @@ import _ from 'lodash';
 const schema = yup.object().shape({
 	username: yup.string().required(),
 	password: yup.string().required()
-  });
-
+});
 
 function Login() {
 	const [isErrorState, setErrorState] = useState(false);
@@ -27,16 +26,8 @@ function Login() {
 		actions.setSubmitting(true);
 		await Promise.all([login(data)])
 			.then((res) => {
-				console.log(res);
 				if (res[0].status === 200) {
-					const {
-						id,
-						username,
-						email,
-						roles,
-						accessToken
-					} = res[0].data;
-
+					const { id, username, email, roles, accessToken } = res[0].data;
 
 					localStorage.setItem('_id', id);
 					localStorage.setItem('username', username);
@@ -66,7 +57,6 @@ function Login() {
 
 	return (
 		<JumbotronWrapper title="Login" description="">
-
 			<Formik
 				validationSchema={schema}
 				onSubmit={handleSubmit}
@@ -81,23 +71,49 @@ function Login() {
 					isValid,
 					errors,
 					action,
-					isSubmitting,
+					isSubmitting
 				}) => (
 					<Form noValidate onSubmit={handleSubmit}>
 						<Form.Group className="mb-3" controlId="username">
 							<Form.Label>Username</Form.Label>
-							<Form.Control isInvalid={!!errors.username} onChange={handleChange} name="username" value={values.username} type="text" placeholder="Enter username" required />
-							<Form.Control.Feedback type="invalid">{errors.username}</Form.Control.Feedback>
+							<Form.Control
+								isInvalid={!!errors.username}
+								isValid={touched.username && !errors.username}
+								onChange={handleChange}
+								name="username"
+								value={values.username}
+								type="text"
+								placeholder="Enter username"
+								required
+							/>
+							<Form.Control.Feedback type="invalid">
+								{errors.username}
+							</Form.Control.Feedback>
 						</Form.Group>
 
 						<Form.Group className="mb-3" controlId="password">
 							<Form.Label>Password</Form.Label>
-							<Form.Control isInvalid={!!errors.password && values.password.length < 6} isValid={values.password.length > 5 && touched.password && !errors.password} onChange={handleChange} name="password" value={values.password} type="password" placeholder="Enter password" required />
-							<Form.Control.Feedback type="invalid">{errors.password}</Form.Control.Feedback>
+							<Form.Control
+								isInvalid={!!errors.password && values.password.length < 6}
+								isValid={
+									values.password.length > 5 &&
+									touched.password &&
+									!errors.password
+								}
+								onChange={handleChange}
+								name="password"
+								value={values.password}
+								type="password"
+								placeholder="Enter password"
+								required
+							/>
+							<Form.Control.Feedback type="invalid">
+								{errors.password}
+							</Form.Control.Feedback>
 						</Form.Group>
-						{isErrorState && (
-							<Alert variant={`danger`}>{isErrorMsg}</Alert>
-						)}
+
+						{isErrorState && <Alert variant={`danger`}>{isErrorMsg}</Alert>}
+
 						<div className="text-right">
 							<Link to="/register">Register</Link>
 						</div>

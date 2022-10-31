@@ -1,5 +1,4 @@
 import React, { memo, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { Alert, Form, Button } from 'react-bootstrap';
 import { JumbotronWrapper } from './common';
 import { Formik } from 'formik';
@@ -7,39 +6,48 @@ import * as yup from 'yup';
 import * as api from 'api';
 
 const schema = yup.object().shape({
-	Author: yup.string().required(),
-	email: yup.string().required(),
-	Year: yup.string().required(),
+	author: yup.string().required(),
+	title: yup.string().required(),
+	year: yup.string().required()
 });
 
 const initialValues = {
-	Author: '',
-	email: '',
-	Year: ''
+	author: '',
+	title: '',
+	year: ''
 };
 
-function Create() {
+function CreateBook() {
 	const [isErrorState, setErrorState] = useState(false);
-	const [isErrorMsg, setErrorMsg] = useState('');
+	const [successState, setSuccessState] = useState(false);
+	const [msgState, setMsgState] = useState(null);
 
-	async function handleSubmit(values, actions) {
+	const handleSubmit = async (values, actions) => {
 		actions.setSubmitting(true);
-		const response = await Promise.all([api.signup(values)])
-				.catch((err) => {
-					console.log(err);
-					console.log(err.response.data.message);
-					setErrorMsg(response.message);
-					setErrorState(true);
-					actions.setSubmitting(false);
-					actions.resetForm(initialValues);
-					return err.response.data;
-				});
-
-		if (response[0].status === 200) {
+		const response = await Promise.all([api.create(values)]).catch((err) => {
+			setTimeout(() => {
+				err.response?.data
+					? setMsgState(err.response.data.message)
+					: setMsgState(err.message);
+				setErrorState(true);
+			}, 5000);
 			actions.setSubmitting(false);
 			actions.resetForm(initialValues);
+			return err;
+		});
+
+		if (response[0].status === 200) {
+			setSuccessState(true);
+			setMsgState(response[0].data.message);
+			actions.setSubmitting(false);
+			actions.resetForm(initialValues);
+
+			setTimeout(() => {
+				setMsgState(null);
+				setSuccessState(false);
+			}, 5000);
 		}
-	}
+	};
 
 	return (
 		<JumbotronWrapper title="Create a book" description="">
@@ -47,9 +55,9 @@ function Create() {
 				validationSchema={schema}
 				onSubmit={handleSubmit}
 				initialValues={{
-				  Author: '',
-				  Title: '',
-				  Year: '',
+					author: '',
+					title: '',
+					year: ''
 				}}
 			>
 				{({
@@ -61,33 +69,64 @@ function Create() {
 					isValid,
 					errors,
 					actions,
-					isSubmitting,
+					isSubmitting
 				}) => (
 					<Form noValidate onSubmit={handleSubmit}>
-						<Form.Group className="mb-3" controlId="Author">
+						<Form.Group className="mb-3" controlId="author">
 							<Form.Label>Author</Form.Label>
-							<Form.Control isInvalid={!!errors.Author} isValid={touched.Author && !errors.Author} onChange={handleChange} name="Author" value={values.Author} type="text" placeholder="Enter Author" required />
-							<Form.Control.Feedback type="invalid">{errors.Author}</Form.Control.Feedback>
+							<Form.Control
+								isInvalid={!!errors.author}
+								isValid={touched.author && !errors.author}
+								onChange={handleChange}
+								name="author"
+								value={values.author}
+								type="text"
+								placeholder="Enter Author"
+								required
+							/>
+							<Form.Control.Feedback type="invalid">
+								{errors.author}
+							</Form.Control.Feedback>
 						</Form.Group>
 
-						<Form.Group className="mb-3" controlId="Title">
+						<Form.Group className="mb-3" controlId="title">
 							<Form.Label>Title</Form.Label>
-							<Form.Control isInvalid={!!errors.Title} isValid={touched.Title && !errors.Title} onChange={handleChange} name="Title" value={values.Title} type="text" placeholder="Enter Email" required />
-							<Form.Control.Feedback type="invalid">{errors.email}</Form.Control.Feedback>
+							<Form.Control
+								isInvalid={!!errors.title}
+								isValid={touched.title && !errors.title}
+								onChange={handleChange}
+								name="title"
+								value={values.title}
+								type="text"
+								placeholder="Enter Title"
+								required
+							/>
+							<Form.Control.Feedback type="invalid">
+								{errors.title}
+							</Form.Control.Feedback>
 						</Form.Group>
 
-						<Form.Group className="mb-3" controlId="Year">
+						<Form.Group className="mb-3" controlId="year">
 							<Form.Label>Year</Form.Label>
-							<Form.Control isInvalid={!!errors.Year} isValid={touched.Year && !errors.Year} onChange={handleChange} name="Year" value={values.Year} type="text" placeholder="Enter Year" required />
-							<Form.Control.Feedback type="invalid">{errors.Year}</Form.Control.Feedback>
+							<Form.Control
+								isInvalid={!!errors.year}
+								isValid={touched.year && !errors.year}
+								onChange={handleChange}
+								name="year"
+								value={values.year}
+								type="text"
+								placeholder="Enter Year"
+								required
+							/>
+							<Form.Control.Feedback type="invalid">
+								{errors.year}
+							</Form.Control.Feedback>
 						</Form.Group>
 
-						{isErrorState && (
-							<Alert variant={`danger`}>{isErrorMsg}</Alert>
-						)}
-						<div className="text-right">
-							<Link to="/login">Back to login</Link>
-						</div>
+						{isErrorState && <Alert variant={`danger`}>{msgState}</Alert>}
+
+						{successState && <Alert variant={'success'}>{msgState}</Alert>}
+
 						<Button variant="primary" type="submit" disabled={isSubmitting}>
 							Register
 						</Button>
@@ -98,4 +137,4 @@ function Create() {
 	);
 }
 
-export default memo(Create);
+export default memo(CreateBook);

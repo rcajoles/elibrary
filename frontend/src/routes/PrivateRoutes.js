@@ -12,7 +12,6 @@ function PrivateRoutes() {
 	if (isLoggedIn()) allowedRoutes = getAllowedRoutes(PrivateRoutesConfig);
 	else return <Redirect to="/" />;
 
-	console.log(allowedRoutes);
 	return (
 		<Fragment>
 			<TopNav routes={allowedRoutes} prefix={match.path} className="bg-white" />
