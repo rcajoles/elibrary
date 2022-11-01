@@ -1,0 +1,1432 @@
+{
+	"info": {
+		"_postman_id": "1655e75f-797d-4584-9fa9-b8890edd7180",
+		"name": "E-Library API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1537950"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "User Content",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNTc5YTg3YjY1NTkwY2Y1MWIwNDQxYyIsImlhdCI6MTY2NjY4NTU5MCwiZXhwIjoxNjY2NzcxOTkwfQ.obcSjX63NAA6Rwy-CnQ0hwJvpkV3jb5QdfHqWxwBCf4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Access-Control-Allow-Headers",
+								"value": "x-access-token, Origin, Content-Type, Accept",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNTc5YTg3YjY1NTkwY2Y1MWIwNDQxYyIsImlhdCI6MTY2NjY4NTU5MCwiZXhwIjoxNjY2NzcxOTkwfQ.obcSjX63NAA6Rwy-CnQ0hwJvpkV3jb5QdfHqWxwBCf4",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/api/test/user",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"test",
+								"user"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "User Content",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Access-Control-Allow-Headers",
+										"value": "x-access-token, Origin, Content-Type, Accept",
+										"type": "text"
+									},
+									{
+										"key": "x-access-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNTc5YTg3YjY1NTkwY2Y1MWIwNDQxYyIsImlhdCI6MTY2NjY4NTU5MCwiZXhwIjoxNjY2NzcxOTkwfQ.obcSjX63NAA6Rwy-CnQ0hwJvpkV3jb5QdfHqWxwBCf4",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:8080/api/test/user",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"test",
+										"user"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:8081"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "x-access-token, Origin, Content-Type, Accept"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/html; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "13"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"d-AznB8FXUt+NgRdD3M3LvzELOYl8\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 25 Oct 2022 08:20:33 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "User Content."
+						},
+						{
+							"name": "Failed",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Access-Control-Allow-Headers",
+										"value": "x-access-token, Origin, Content-Type, Accept",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "x-access-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNTc5YTg3YjY1NTkwY2Y1MWIwNDQxYyIsImlhdCI6MTY2NjY4NTU5MCwiZXhwIjoxNjY2NzcxOTkwfQ.obcSjX63NAA6Rwy-CnQ0hwJvpkV3jb5QdfHqWxwBCf4",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "localhost:8080/api/test/user",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"test",
+										"user"
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:8081"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "x-access-token, Origin, Content-Type, Accept"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "32"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"20-2RqHD6kaUW9yXBkJM4BxciU8/Ik\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 25 Oct 2022 08:21:26 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"No token provided!\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Books",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNWE0ZjBmZGY1MDU5MGI0MDdiMWM5MyIsImlhdCI6MTY2Njg2NzYzNSwiZXhwIjoxNjY2OTU0MDM1fQ.dV30CgdUHCOwbPBGsu4hYF9nPCFsctnPFMvQlpLCBYo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Access-Control-Allow-Headers",
+								"value": "x-access-token, Origin, Content-Type, Accept",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNWE0ZjBmZGY1MDU5MGI0MDdiMWM5MyIsImlhdCI6MTY2Njg2NzYzNSwiZXhwIjoxNjY2OTU0MDM1fQ.dV30CgdUHCOwbPBGsu4hYF9nPCFsctnPFMvQlpLCBYo",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"author\":\"Grayman\",\r\n    \"title\":\"Grayman 3\",\r\n    \"category\":\"action\",\r\n    \"year\":\"1979\",\r\n    \"isbn\":\"1222123456733\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/books",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"books"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Access-Control-Allow-Headers",
+										"value": "x-access-token, Origin, Content-Type, Accept",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "x-access-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNTg5YmVmOTIyNjYwNzdhZTI5MDBiOCIsImlhdCI6MTY2Njc1MTQ4MiwiZXhwIjoxNjY2ODM3ODgyfQ.eDTLEhY4Jj2ZVJjOaB5AStoLRpMPmrM94wf-ZI41rkU",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"author\":\"book 1\",\r\n    \"title\":\"classroom horror\",\r\n    \"category\":\"horror\",\r\n    \"year\":\"1979\",\r\n    \"isbn\":\"1222123456789\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/api/books",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"books"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:8081"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "x-access-token, Origin, Content-Type, Accept"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "50"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"32-J7w53IThmd+CBnRBkFbBDzOJzds\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 26 Oct 2022 02:32:22 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"A new book was created successfully!\"\n}"
+						},
+						{
+							"name": "Already exists",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Access-Control-Allow-Headers",
+										"value": "x-access-token, Origin, Content-Type, Accept",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "x-access-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNTg5YmVmOTIyNjYwNzdhZTI5MDBiOCIsImlhdCI6MTY2Njc1MTQ4MiwiZXhwIjoxNjY2ODM3ODgyfQ.eDTLEhY4Jj2ZVJjOaB5AStoLRpMPmrM94wf-ZI41rkU",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"author\":\"book 1\",\r\n    \"title\":\"classroom horror\",\r\n    \"category\":\"horror\",\r\n    \"year\":\"1979\",\r\n    \"isbn\":\"1222123456789\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/api/books",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"books"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:8081"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "x-access-token, Origin, Content-Type, Accept"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "51"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"33-JHKgE3YMD5h3KLXnsg2Xb2QUdOA\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 26 Oct 2022 02:33:42 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Failed! Book Title is already in use!\"\n}"
+						},
+						{
+							"name": "Role not allowed",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Access-Control-Allow-Headers",
+										"value": "x-access-token, Origin, Content-Type, Accept",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "x-access-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNTg5Y2JlOTIyNjYwNzdhZTI5MDBjZSIsImlhdCI6MTY2Njc1MTY4NSwiZXhwIjoxNjY2ODM4MDg1fQ.nqDpsDo22ztzmWCEHQEYF6Z898wFHDPlZoYWVf0Hm2I",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"author\":\"book 1\",\r\n    \"title\":\"classroom horror\",\r\n    \"category\":\"horror\",\r\n    \"year\":\"1979\",\r\n    \"isbn\":\"1222123456789\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/api/books",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"books"
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:8081"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "x-access-token, Origin, Content-Type, Accept"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "35"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"23-xAKbNOuCpjbsNzzPC7FqQUIERgA\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 26 Oct 2022 02:35:01 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Require Creator Role!\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Read",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNThhZTBjNTVmZTc4MGZmNmVjZjBhYSIsImlhdCI6MTY2Njc1NjE1NiwiZXhwIjoxNjY2ODQyNTU2fQ.weuvUOANqq8gVDP9q3tXFNQgFW1hLPfeUaUi8jXxBr4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Access-Control-Allow-Headers",
+								"value": "x-access-token, Origin, Content-Type, Accept",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNThhZTBjNTVmZTc4MGZmNmVjZjBhYSIsImlhdCI6MTY2Njc1NjE1NiwiZXhwIjoxNjY2ODQyNTU2fQ.weuvUOANqq8gVDP9q3tXFNQgFW1hLPfeUaUi8jXxBr4",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/books?old=1&limit=10",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"books"
+							],
+							"query": [
+								{
+									"key": "old",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Access-Control-Allow-Headers",
+										"value": "x-access-token, Origin, Content-Type, Accept",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "x-access-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNWE0ZjIzZGY1MDU5MGI0MDdiMWM5OSIsImlhdCI6MTY2Njg2OTI3MiwiZXhwIjoxNjY2OTU1NjcyfQ.7actvC4Q5ggFMCfrWaGcIYlgrCZJECDExOqVhFACcW0",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/api/books",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"books"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:8081"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "x-access-token, Origin, Content-Type, Accept"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "781"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"30d-uD/6yw46BKOLTLorm35fP4+un4o\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 27 Oct 2022 11:15:00 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"_id\": \"635a5005df50590b407b1cf1\",\n            \"author\": \"Grayman\",\n            \"title\": \"Grayman 1\",\n            \"category\": \"action\",\n            \"year\": \"1979\",\n            \"isbn\": \"1222123456731\",\n            \"createdAt\": \"2022-10-27T09:31:49.295Z\",\n            \"updatedAt\": \"2022-10-27T09:31:49.304Z\",\n            \"__v\": 0,\n            \"createdBy\": \"635a4f23df50590b407b1c99\"\n        },\n        {\n            \"_id\": \"635a500ddf50590b407b1cfa\",\n            \"author\": \"Grayman\",\n            \"title\": \"Grayman 2\",\n            \"category\": \"action\",\n            \"year\": \"1979\",\n            \"isbn\": \"1222123456732\",\n            \"createdAt\": \"2022-10-27T09:31:57.848Z\",\n            \"updatedAt\": \"2022-10-27T09:31:57.856Z\",\n            \"__v\": 0,\n            \"createdBy\": \"635a4f23df50590b407b1c99\"\n        },\n        {\n            \"_id\": \"635a5014df50590b407b1d03\",\n            \"author\": \"Grayman\",\n            \"title\": \"Grayman test\",\n            \"category\": \"action\",\n            \"year\": \"1979\",\n            \"isbn\": \"1222123456733\",\n            \"createdAt\": \"2022-10-27T09:32:04.637Z\",\n            \"updatedAt\": \"2022-10-27T11:03:21.971Z\",\n            \"__v\": 0,\n            \"createdBy\": \"635a4f23df50590b407b1c99\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNWE0ZjBmZGY1MDU5MGI0MDdiMWM5MyIsImlhdCI6MTY2Njg2ODcwMSwiZXhwIjoxNjY2OTU1MTAxfQ.6089XRRTawt1s0glehOLFEQT3KByCDPBxoYBus7OA3M",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Access-Control-Allow-Headers",
+								"value": "x-access-token, Origin, Content-Type, Accept",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNWE0ZjBmZGY1MDU5MGI0MDdiMWM5MyIsImlhdCI6MTY2Njg2ODcwMSwiZXhwIjoxNjY2OTU1MTAxfQ.6089XRRTawt1s0glehOLFEQT3KByCDPBxoYBus7OA3M",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"_id\": \"635a4f9bdf50590b407b1cdd\",\r\n    \"author\":\"Grayman\",\r\n    \"title\":\"Grayman special\",\r\n    \"category\":\"action\",\r\n    \"year\":\"1979\",\r\n    \"isbn\":\"1222123456733\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/books",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"books"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Access-Control-Allow-Headers",
+										"value": "x-access-token, Origin, Content-Type, Accept",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "x-access-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNWE0ZjBmZGY1MDU5MGI0MDdiMWM5MyIsImlhdCI6MTY2Njg2NzYzNSwiZXhwIjoxNjY2OTU0MDM1fQ.dV30CgdUHCOwbPBGsu4hYF9nPCFsctnPFMvQlpLCBYo",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"author\":\"Grayman\",\r\n    \"title\":\"Grayman 3\",\r\n    \"category\":\"action\",\r\n    \"year\":\"1979\",\r\n    \"isbn\":\"1222123456733\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/api/books",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"books"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:8081"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "x-access-token, Origin, Content-Type, Accept"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "53"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"35-oL81rDOjqm58YFhixlQ/rww83Ms\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 27 Oct 2022 10:58:38 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"A book record was successfully updated.\"\n}"
+						},
+						{
+							"name": "Already exists",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Access-Control-Allow-Headers",
+										"value": "x-access-token, Origin, Content-Type, Accept",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "x-access-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNWE0ZjIzZGY1MDU5MGI0MDdiMWM5OSIsImlhdCI6MTY2Njg2ODI5MCwiZXhwIjoxNjY2OTU0NjkwfQ.aYCyI5yaOKP12uV33sWqgbdBMsXDOqrQHhLkFRHJHwk",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"_id\": \"635a5014df50590b407b1d03\",\r\n    \"author\":\"Grayman\",\r\n    \"title\":\"Grayman 3\",\r\n    \"category\":\"action\",\r\n    \"year\":\"1979\",\r\n    \"isbn\":\"1222123456733\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/api/books",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"books"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:8081"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "x-access-token, Origin, Content-Type, Accept"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "59"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3b-pev28FZmryNXZXzCY6clT20O3/0\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 27 Oct 2022 11:02:53 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"A book with the same title is already in use!\"\n}"
+						},
+						{
+							"name": "Unauthorized to change",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Access-Control-Allow-Headers",
+										"value": "x-access-token, Origin, Content-Type, Accept",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "x-access-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNWE0ZjIzZGY1MDU5MGI0MDdiMWM5OSIsImlhdCI6MTY2Njg2ODI5MCwiZXhwIjoxNjY2OTU0NjkwfQ.aYCyI5yaOKP12uV33sWqgbdBMsXDOqrQHhLkFRHJHwk",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"_id\": \"635a4f9bdf50590b407b1cdd\",\r\n    \"author\":\"Grayman\",\r\n    \"title\":\"Grayman special\",\r\n    \"category\":\"action\",\r\n    \"year\":\"1979\",\r\n    \"isbn\":\"1222123456733\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/api/books",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"books"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:8081"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "x-access-token, Origin, Content-Type, Accept"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "55"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"37-994QPVjK3Bw1vN2t8wLgW5H3BAI\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 27 Oct 2022 11:04:19 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Unauthorized to change this books detail.\"\n}"
+						},
+						{
+							"name": "Role not allowed",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Access-Control-Allow-Headers",
+										"value": "x-access-token, Origin, Content-Type, Accept",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "x-access-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNWE0ZjBmZGY1MDU5MGI0MDdiMWM5MyIsImlhdCI6MTY2Njg2ODcwMSwiZXhwIjoxNjY2OTU1MTAxfQ.6089XRRTawt1s0glehOLFEQT3KByCDPBxoYBus7OA3M",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"_id\": \"635a4f9bdf50590b407b1cdd\",\r\n    \"author\":\"Grayman\",\r\n    \"title\":\"Grayman special\",\r\n    \"category\":\"action\",\r\n    \"year\":\"1979\",\r\n    \"isbn\":\"1222123456733\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/api/books",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"books"
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:8081"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "x-access-token, Origin, Content-Type, Accept"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "35"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"23-xAKbNOuCpjbsNzzPC7FqQUIERgA\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 27 Oct 2022 11:05:15 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Require Creator Role!\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNWE0ZjIzZGY1MDU5MGI0MDdiMWM5OSIsImlhdCI6MTY2Njg2OTI3MiwiZXhwIjoxNjY2OTU1NjcyfQ.7actvC4Q5ggFMCfrWaGcIYlgrCZJECDExOqVhFACcW0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Access-Control-Allow-Headers",
+								"value": "x-access-token, Origin, Content-Type, Accept",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNWE0ZjIzZGY1MDU5MGI0MDdiMWM5OSIsImlhdCI6MTY2Njg2OTI3MiwiZXhwIjoxNjY2OTU1NjcyfQ.7actvC4Q5ggFMCfrWaGcIYlgrCZJECDExOqVhFACcW0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"_id\": \"635a5014df50590b407b1d03\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/books/delete",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"books",
+								"delete"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Access-Control-Allow-Headers",
+										"value": "x-access-token, Origin, Content-Type, Accept",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "x-access-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNWE0ZjIzZGY1MDU5MGI0MDdiMWM5OSIsImlhdCI6MTY2Njg2OTI3MiwiZXhwIjoxNjY2OTU1NjcyfQ.7actvC4Q5ggFMCfrWaGcIYlgrCZJECDExOqVhFACcW0",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"_id\": \"635a5014df50590b407b1d03\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/api/books/delete",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"books",
+										"delete"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:8081"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "x-access-token, Origin, Content-Type, Accept"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "53"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"35-b5maP7DRHmg5/8+2/fIWcCh9/Sw\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 27 Oct 2022 11:47:36 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"A book record was successfully deleted.\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Signin",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"test2\",\r\n    \"password\":\"123456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/auth/signin",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"auth",
+						"signin"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"test1\",\r\n    \"email\":\"test@test1.com\",\r\n    \"password\":\"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/auth/signin",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"signin"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "http://localhost:8001"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "x-access-token, Origin, Content-Type, Accept"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "287"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"11f-EUVbbevsd2pir8DDayEppy0ieO8\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 25 Oct 2022 04:38:27 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"63574c112ded64dd67d2b582\",\n    \"username\": \"test1\",\n    \"email\": \"test@test1.com\",\n    \"roles\": [\n        \"ROLE_USER\"\n    ],\n    \"accessToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNTc0YzExMmRlZDY0ZGQ2N2QyYjU4MiIsImlhdCI6MTY2NjY3MjcwNywiZXhwIjoxNjY2NzU5MTA3fQ.AZEeuD5Ia_aC69a0RY6hF54WOjWgsB8cNMKjihBsk2M\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Signup",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "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",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"test3\",\r\n    \"email\":\"test3@test.com\",\r\n    \"password\":\"123456\",\r\n    \"roles\": [\"moderator\"]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/auth/signup",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"auth",
+						"signup"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"test3\",\r\n    \"email\":\"test3@test.com\",\r\n    \"password\":\"123456\",\r\n    \"roles\": [\"moderator\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/auth/signup",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "http://localhost:8081"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "x-access-token, Origin, Content-Type, Accept"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "47"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"2f-ycIOj/6kXGxPaEoiW5+ikfXgO5w\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 25 Oct 2022 08:12:55 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"User was registered successfully!\"\n}"
+				}
+			]
+		}
+	]
+}

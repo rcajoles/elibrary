@@ -128,7 +128,7 @@ function CreateBook() {
 						{successState && <Alert variant={'success'}>{msgState}</Alert>}
 
 						<Button variant="primary" type="submit" disabled={isSubmitting}>
-							Register
+							Create
 						</Button>
 					</Form>
 				)}
