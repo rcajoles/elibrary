@@ -27,10 +27,8 @@ function Register() {
 	const handleSubmit = async (values, actions) => {
 		values.roles = selected;
 		actions.setSubmitting(true);
-    const response = await Promise.all([api.signup(values)])
+    const response = await Promise.all([api.auth.signup(values)])
       .catch((err) => {
-        console.log(err);
-        console.log(err.response.data.message);
         actions.setSubmitting(false);
         actions.resetForm(initialValues);
         return err.response.data;

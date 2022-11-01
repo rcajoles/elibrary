@@ -1,25 +1,32 @@
 import axios from 'axios';
 
 const app_uri = `${process.env.REACT_APP_BASE_API}`;
-const token = !!localStorage.getItem('accessToken')
-	? localStorage.getItem('accessToken')
-	: null;
 
-export const read = async (params) => {
-	const endpoint = `/api/books`;
+
+const read = async (query) => {
+  const token = getToken('accessToken') ?? null;
+
+  if (query?.id) {
+    query[`_id`] = query.id;
+  }
+
+  const params = { data: { ...query } };
+  const endpoint = `/api/books`;
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'x-access-token': `${token}`,
+      'Content-Type': `application/json`
+    },
+    params
+  };
 	const url = `${app_uri}${endpoint}`;
-	const response = await axios.get(url, {
-		headers: {
-			Authorization: `Bearer ${token}`,
-			'x-access-token': `${token}`,
-			'Content-Type': `application/json`
-		}
-	});
-
+	const response = await axios.get(url, config);
 	return response;
 };
 
-export const create = async (params) => {
+const create = async (params) => {
+  const token = getToken('accessToken') ?? null;
 	const { author, title, year } = params;
 
 	const payload = {
@@ -41,7 +48,8 @@ export const create = async (params) => {
 	return response;
 };
 
-export const update = async (params) => {
+const update = async (params) => {
+  const token = getToken('accessToken') ?? null;
 	const { _id, author, title, year } = params;
 
 	const payload = {
@@ -64,7 +72,8 @@ export const update = async (params) => {
 	return response;
 };
 
-export const deleteBook = async (params) => {
+const deleteBook = async (params) => {
+  const token = getToken('accessToken') ?? null;
 	const { _id } = params;
 
 	const endpoint = `/api/books/delete`;
@@ -83,3 +92,16 @@ export const deleteBook = async (params) => {
 
 	return response;
 };
+
+const getToken = (args) => {
+  return localStorage.getItem(args);
+};
+
+const endpoints = {
+  read,
+  create,
+  update,
+  deleteBook,
+};
+
+export default endpoints;

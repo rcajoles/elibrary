@@ -1,54 +1,62 @@
-import React, { memo, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { memo, useState, useEffect } from 'react';
+// import { useParams } from 'react-router-dom';
 import { Alert, Form, Button } from 'react-bootstrap';
-import { JumbotronWrapper } from './common';
 import { Formik } from 'formik';
+// import _ from 'lodash';
 import * as yup from 'yup';
 import * as api from 'api';
 
 const schema = yup.object().shape({
-	Author: yup.string().required(),
-	email: yup.string().required(),
-	Year: yup.string().required()
+	author: yup.string().required(),
+	title: yup.string().required(),
+	year: yup.string().required()
 });
 
-const initialValues = {
-	Author: '',
-	email: '',
-	Year: ''
-};
-
-function Edit() {
+function Edit({ data, active, ...props }) {
 	const [isErrorState, setErrorState] = useState(false);
-	const [isErrorMsg, setErrorMsg] = useState('');
+	const [successState, setSuccessState] = useState(false);
+	const [msgState, setMsgState] = useState(null);
+  const [initialValue, setInitialValue] = useState({});
+  const value = { author: '', title: '', year: '' };
 
-	async function handleSubmit(values, actions) {
-		actions.setSubmitting(true);
-    const response = await Promise.all([api.signup(values)])
+  const handleSubmit = async (values, actions) => {
+    actions.setSubmitting(true);
+    const response = await Promise.all([api.books.update(values)])
       .catch((err) => {
-        setErrorMsg(response.message);
+        setMsgState(err.message);
         setErrorState(true);
         actions.setSubmitting(false);
-        actions.resetForm(initialValues);
-        return err.response.data;
+        setInitialValue(value);
+        return err;
       });
 
-		if (response[0].status === 200) {
-			actions.setSubmitting(false);
-			actions.resetForm(initialValues);
-		}
-	}
+    if (response[0].status === 200) {
+      setMsgState(response[0].data.message);
+      setSuccessState(true);
+
+      setTimeout(() => {
+        setMsgState(null);
+        setSuccessState(false);
+        actions.setSubmitting(false);
+        setInitialValue(value);
+      }, 5000);
+    }
+    return response;
+  }
+
+
+  useEffect(() => {
+    setInitialValue({ _id: data._id , author: data.author, title: data.title, year: data.year });
+  }, [data])
+
 
 	return (
-		<JumbotronWrapper title="Edit a book" description="">
-			<Formik
+		<>
+      <Formik
 				validationSchema={schema}
 				onSubmit={handleSubmit}
-				initialValues={{
-					Author: '',
-					Title: '',
-					Year: ''
-				}}
+        initialValues={initialValue}
+        enableReinitialize={true}
 			>
 				{({
 					handleSubmit,
@@ -62,68 +70,65 @@ function Edit() {
 					isSubmitting
 				}) => (
 					<Form noValidate onSubmit={handleSubmit}>
-						<Form.Group className="mb-3" controlId="Author">
+						<Form.Group className="mb-3" controlId="author">
 							<Form.Label>Author</Form.Label>
 							<Form.Control
-								isInvalid={!!errors.Author}
-								isValid={touched.Author && !errors.Author}
+								isInvalid={!!errors.author}
+								isValid={touched.author && !errors.author}
 								onChange={handleChange}
-								name="Author"
-								value={values.Author}
+								name="author"
+								value={values.author}
 								type="text"
 								placeholder="Enter Author"
 								required
 							/>
 							<Form.Control.Feedback type="invalid">
-								{errors.Author}
+								{errors.author}
 							</Form.Control.Feedback>
 						</Form.Group>
 
-						<Form.Group className="mb-3" controlId="Title">
+						<Form.Group className="mb-3" controlId="title">
 							<Form.Label>Title</Form.Label>
 							<Form.Control
-								isInvalid={!!errors.Title}
-								isValid={touched.Title && !errors.Title}
+								isInvalid={!!errors.title}
+								isValid={touched.title && !errors.title}
 								onChange={handleChange}
-								name="Title"
-								value={values.Title}
+								name="title"
+								value={values.title}
 								type="text"
-								placeholder="Enter Email"
+								placeholder="Enter Title"
 								required
 							/>
 							<Form.Control.Feedback type="invalid">
-								{errors.email}
+								{errors.title}
 							</Form.Control.Feedback>
 						</Form.Group>
 
-						<Form.Group className="mb-3" controlId="Year">
+						<Form.Group className="mb-3" controlId="year">
 							<Form.Label>Year</Form.Label>
 							<Form.Control
-								isInvalid={!!errors.Year}
-								isValid={touched.Year && !errors.Year}
+								isInvalid={!!errors.year}
+								isValid={touched.year && !errors.year}
 								onChange={handleChange}
-								name="Year"
-								value={values.Year}
+								name="year"
+								value={values.year}
 								type="text"
 								placeholder="Enter Year"
 								required
 							/>
 							<Form.Control.Feedback type="invalid">
-								{errors.Year}
+								{errors.year}
 							</Form.Control.Feedback>
 						</Form.Group>
-
-						{isErrorState && <Alert variant={`danger`}>{isErrorMsg}</Alert>}
-						<div className="text-right">
-							<Link to="/login">Back to login</Link>
-						</div>
+            {successState && <Alert variant={'success'}>{msgState}</Alert>}
+						{isErrorState && <Alert variant={`danger`}>{msgState}</Alert>}
 						<Button variant="primary" type="submit" disabled={isSubmitting}>
-							Register
+							Submit
 						</Button>
 					</Form>
 				)}
 			</Formik>
-		</JumbotronWrapper>
+		</>
 	);
 }
 

@@ -3,7 +3,7 @@ import { Alert, Form, Button } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { JumbotronWrapper } from './common';
-import { login } from 'api';
+import * as api from 'api';
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import _ from 'lodash';
@@ -22,10 +22,10 @@ function Login() {
 	};
 	let history = useHistory();
 
-	const handleSubmit = async (data, actions) => {
+	const handleSubmit = (data, actions) => {
 		actions.setSubmitting(true);
-		await Promise.all([login(data)])
-			.then((res) => {
+		Promise.all([api.auth.login(data)])
+      .then((res) => {
 				if (res[0].status === 200) {
 					const { id, username, email, roles, accessToken } = res[0].data;
 

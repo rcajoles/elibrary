@@ -24,7 +24,7 @@ function CreateBook() {
 
 	const handleSubmit = async (values, actions) => {
 		actions.setSubmitting(true);
-		const response = await Promise.all([api.create(values)]).catch((err) => {
+		const response = await Promise.all([api.books.create(values)]).catch((err) => {
 			setTimeout(() => {
 				err.response?.data
 					? setMsgState(err.response.data.message)

@@ -1,2 +1,2 @@
-export { login, signup } from './auth';
-export { read, create, update, deleteBook } from './books';
+export { default as auth } from './auth';
+export { default as books } from './books';

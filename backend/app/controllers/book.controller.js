@@ -11,54 +11,62 @@ const Book = db.book;
  * Create a book record
  */
 const create = (req, res) => {
-  const {
-    author,
-    title,
-    year,
-  } = req.body;
 
-   const newBook = new Book({
-    author,
-    title,
-    year,
-  });
+  try {
+    const {
+      author,
+      title,
+      year,
+    } = req.body;
 
-  newBook.save((err, record) => {
-    if (err) {
-      res.status(500).send({ message: err });
-      return;
-    }
+     const newBook = new Book({
+      author,
+      title,
+      year,
+    });
 
-    User.findById(req.userId).exec((err, creator) => {
-      if (err) {
-        res.status(500).send({ message: err });
+    newBook.save((error, record) => {
+      if (error) {
+        res.status(500).send({ message: error });
         return;
       }
 
-      record.createdBy = creator._id;
-      record.save((err, updatedRecord) => {
-        if (err) {
-          res.status(500).send({ message: err });
+      User.findById(req.userId).exec((error, creator) => {
+        if (error) {
+          res.status(500).send({ message: error });
           return;
         }
 
-        res.status(200).send({ message: 'A new book was created successfully!' });
+        record.createdBy = creator._id;
+        record.save((error, updatedRecord) => {
+          if (error) {
+            res.status(500).send({ message: error });
+            return;
+          }
+
+          res.status(200).send({ message: 'A new book was created successfully!' });
+          return;
+        });
       });
     });
-  });
+  } catch (error) {
+    res.status(500).send({ message: error });
+    return;
+  }
+
 };
 
 /**
  * Verify if active user's role is Creator
  * this help's to filter getting list of Books
  */
-const isUserViewer = async (params) => {
+const userIsCreator = async (params) => {
   try {
     const roles = await Role.find({ _id: { $in: params } });
     let state = false;
 
     _.forEach(Array.from(roles), (item) => {
-      if (item.name === 'viewer') {
+            if (item.name === 'viewer' || item.name === 'creator') {
         state = true;
       }
     });
@@ -74,40 +82,54 @@ const isUserViewer = async (params) => {
  * Get all Book records
  */
 const read = async (req, res) => {
-  const builder = new QueryBuilder(req.query, queryConfig);
-  const builtQuery = builder.build();
-  let filter = {};
-
-  if (!_.isEmpty(req.query)) {
-    filter = {
-      ...builtQuery,
-    };
-
-    if (_.has(req.query, 'old') || _.has(req.query, 'new')) {
-      const recordDuration = new Date();
-      let minutes = recordDuration.getMinutes();
-
-      if (_.has(req.query, 'old')) {
-        minutes += 10;
-      } else if (_.has(req.query, 'new')) {
-        minutes -= 10;
-      }
-      recordDuration.setMinutes(minutes);
-      filter.createdAt = { $gte: recordDuration };
-    }
-  }
-
-  const isViewer = await isUserViewer(req.userRole);
-  if (isViewer) {
-    filter.createdBy = req.userId;
-  }
-
+  // const builder = new QueryBuilder(req.query, queryConfig);
+  // const builtQuery = builder.build();
   try {
-    const result = await Book.find(filter).all();
+    let filter = {};
+    if (!_.isEmpty(req.body)) {
 
-    res.status(200).send({ data: result });
+    }
+
+    if (!_.isEmpty(req.query)) {
+      filter = {
+        ...req.query,
+      };
+
+      // get book records were created 10 minutes more or less from now
+      if (_.has(req.query, 'old') || _.has(req.query, 'new')) {
+        const recordDuration = new Date();
+        let minutes = recordDuration.getMinutes();
+
+        if (_.has(req.query, 'old')) {
+          minutes += 10;
+        } else if (_.has(req.query, 'new')) {
+          minutes -= 10;
+        }
+        recordDuration.setMinutes(minutes);
+        if (!_.has(filter, 'data') || _.has(filter, 'data')) {
+          filter.data = { createdAt: { $gte: recordDuration } };
+        }
+      }
+    }
+
+    const isViewer = await userIsCreator(req.userRole);
+
+    if (isViewer) {
+      if (!_.has(filter, 'data') || _.has(filter, 'data')) {
+        filter.data = { createdBy: req.userId };
+      }
+    }
+
+    Book.find(filter.data).exec((error, record) => {
+      if (error) {
+        res.status(500).send({ message: error });
+        return;
+      }
+
+      return res.status(200).send(record);
+    });
   } catch (error) {
-    res.status(500).send({ message: err });
+    res.status(500).send({ message: error });
     return;
   }
 };
@@ -131,65 +153,79 @@ const update = (req, res) => {
 
   const query = { _id };
 
-  Book.findById(query).exec((err, book) => {
-    if (err) {
-      res.status(500).send({ message: err });
-      return;
-    }
+  try {
 
-    if (book.createdBy != req.userId) {
-      res.status(401).send({ message: 'Unauthorized to modify this books.' });
-      return;
-    }
-
-    book.updateOne(bookUpdate).exec((err, updatedBook) => {
-      if (err) {
-        res.status(500).send({ message: err });
+    Book.findById(query).exec((error, book) => {
+      if (error) {
+        res.status(500).send({ message: error });
         return;
       }
 
-      res.status(200).send({
-        message: 'A book record was successfully updated.'
+      if (book.createdBy != req.userId) {
+        res.status(401).send({ message: 'Unauthorized to modify this books.' });
+        return;
+      }
+
+      book.updateOne(bookUpdate).exec((error, updatedBook) => {
+        if (error) {
+          res.status(500).send({ message: error });
+          return;
+        }
+
+        res.status(200).send({
+          message: 'A book record was successfully updated.'
+        });
+        return;
       });
-      return;
     });
-  });
+  } catch (error) {
+    res.status(500).send({ message: error });
+    return;
+  }
+
 };
 
 /**
  * Delete a Book record
  */
 const deleteRecord = (req, res) => {
-  const query = { _id: req.body._id };
-  Book.findById(query).exec((err, book) => {
-    if (err) {
-      res.status(500).send({ message: err });
-      return;
-    }
-
-    if (book) {
-      if (book.createdBy != req.userId) {
-        res.status(401).send({ message: 'Unauthorized to modify this books.' });
+  try {
+    const query = { _id: req.body._id };
+    Book.findById(query).exec((error, book) => {
+      if (error) {
+        res.status(500).send({ message: error });
         return;
       }
 
-      book.deleteOne(book._id, (err, deletedBook) => {
-        if (err) {
-          res.status(500).send({ message: err });
+      if (book) {
+        if (book.createdBy != req.userId) {
+          res.status(401).send({ message: 'Unauthorized to modify this books.' });
           return;
         }
 
-        res.status(200).send({
-          message: 'A book record was successfully deleted.'
-        });
-        return;
-      });
-    }
+        book.deleteOne(book._id, (error, deletedBook) => {
+          if (error) {
+            res.status(500).send({ message: error });
+            return;
+          }
 
-    res.status(200).send({
-      message: 'No record of the book was found.'
+          res.status(200).send({
+            message: 'A book record was successfully deleted.'
+          });
+          return;
+        });
+      }
+
+      res.status(200).send({
+        message: 'No record of the book was found.'
+      });
+      return;
     });
-  });
+  } catch (error) {
+    res.status(500).send({ message: error });
+    return;
+  }
+
 };
 
 const controller = {
