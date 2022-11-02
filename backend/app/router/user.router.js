@@ -42,8 +42,7 @@ module.exports = function(app) {
     '/api/books/delete',
     [
       authJwt.verifyToken,
-      authJwt.isCreator,
-      verifyBook.checkDuplicateBookTitle
+      authJwt.isCreator
     ],
     BookController.deleteRecord
   );

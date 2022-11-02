@@ -197,29 +197,22 @@ const deleteRecord = (req, res) => {
         return;
       }
 
-      if (book) {
-        if (book.createdBy != req.userId) {
-          res.status(401).send({ message: 'Unauthorized to modify this books.' });
+      if (book.createdBy != req.userId) {
+        res.status(401).send({ message: 'Unauthorized to modify this books.' });
+        return;
+      }
+
+      book.deleteOne(book._id, (error, deletedBook) => {
+        if (error) {
+          res.status(500).send({ message: error });
           return;
         }
 
-        book.deleteOne(book._id, (error, deletedBook) => {
-          if (error) {
-            res.status(500).send({ message: error });
-            return;
-          }
-
-          res.status(200).send({
-            message: 'A book record was successfully deleted.'
-          });
-          return;
+        res.status(200).send({
+          message: 'A book record was successfully deleted.'
         });
-      }
-
-      res.status(200).send({
-        message: 'No record of the book was found.'
+        return;
       });
-      return;
     });
   } catch (error) {
     res.status(500).send({ message: error });
