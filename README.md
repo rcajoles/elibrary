@@ -26,3 +26,16 @@ This is a small ebook library app
 * `cp .env.sample .env.local`
 * `yarn` or `yarn install`
 * `yarn start`
+
+<br />
+
+```
+
+Notes:
+- You can import the postman collection to your own favorite API testing application to test the projects backend endpoints, it includes CRUD response examples for reference.
+
+- Seed only includes the preset user roles, so you have to register manually through the UI.
+
+- Same scenario with the books, you have to create through the UI (only applicable to 'creator' role).
+
+```

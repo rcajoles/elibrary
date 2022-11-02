@@ -26,9 +26,11 @@ function CreateBook() {
 		actions.setSubmitting(true);
 		const response = await Promise.all([api.books.create(values)]).catch((err) => {
 			setTimeout(() => {
-				err.response?.data
-					? setMsgState(err.response.data.message)
-					: setMsgState(err.message);
+				if (err?.response) {
+          setMsgState(err.response.data.message);
+        } else {
+          setMsgState(err.message);
+        }
 				setErrorState(true);
 			}, 5000);
 			actions.setSubmitting(false);

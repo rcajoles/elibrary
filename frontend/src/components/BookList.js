@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { JumbotronWrapper, DataTable } from './common';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
-import Spinner from 'react-bootstrap/Spinner';
+// import Spinner from 'react-bootstrap/Spinner';
 import Dropdown from 'react-bootstrap/Dropdown';
 import EditBook from './Edit';
 import * as api from 'api';
@@ -65,8 +65,8 @@ function BookList() {
               </Dropdown.Toggle>
 
               <Dropdown.Menu>
-                <Dropdown.Item as="button" title="Edit book" onClick={rowClickHandler}>Edit</Dropdown.Item>
-                <Dropdown.Item as="button" title="Delete book" onClick={deleteBook}>Delete</Dropdown.Item>
+                <Dropdown.Item as="button" title="Edit book" onClick={actionButtonEdit}>Edit</Dropdown.Item>
+                <Dropdown.Item as="button" title="Delete book" onClick={handleConfirmShow}>Delete</Dropdown.Item>
               </Dropdown.Menu>
 
             </Dropdown>
@@ -126,6 +126,43 @@ function BookList() {
 
   useCallback(getBooks(params), [show]);
 
+  const actionButtonEdit = (event) => {
+    const rowChildren = event.target.closest('div[role="row"]').children
+    const rowToArray = Array.from(rowChildren);
+    const data = {
+      author: '',
+      title: '',
+      year: '',
+      _id: ''
+    };
+
+    rowToArray.forEach((element, index) => {
+      if (_.inRange(index, 1, 5)) {
+        switch (index) {
+          case 1:
+            data._id = element.lastChild.innerText;
+            break;
+          case 2:
+            data.author = element.lastChild.innerText;
+            break;
+          case 3:
+            data.title = element.lastChild.innerText;
+            break;
+          case 4:
+            data.year = element.lastChild.innerText;
+            break;
+
+          default:
+            break;
+        }
+      }
+    });
+
+    console.log(data);
+    setModalData(data);
+    handleShow();
+  };
+
   const rowClickHandler = (row, event) => {
     console.log(row);
     console.log(event);
@@ -183,7 +220,7 @@ function BookList() {
 				data={dataTableBooks}
         direction="auto"
         dense
-      />;
+      />
       {editBookModal && editBookModal()}
       {modalConfirmDelete && modalConfirmDelete()}
 		</JumbotronWrapper>
